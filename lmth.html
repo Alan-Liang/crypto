@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Cryptosystem</title>
+<style>
+body{
+background:#233666;
+color:#dccaaa;
+font-size:40px;
+}
+h1{
+font-size:70px;
+text-align:center;
+}
+.button{
+font-size:150px;
+border:5px solid #a99777;
+border-radius:30px;
+text-align:center;
+}
+.playbutton{
+color:#011444;
+background:#877555;
+}
+.hidden{
+display:none;
+}
+input{
+font-size:50px;
+height:55px;
+width:30%;
+}
+button{
+font-size:50px;
+height:55px;
+width:15%;
+}
+
+</style>
+<script language="fk">
+alert(parseInt('12.78'));
+</script>
+</head>
+<body>
+<input id="a">
+<input id="b">
+<button>yes!</button>
+<br />
+<h1>answer:</h1>
+
+
+
+<script>
+try{
+//binum Class define//
+function binum(num){
+  var tenx=parseInt(num);
+  var digits=[];
+  var flag=false;
+  while(!flag){
+    digits.push(tenx%2);
+    tenx=(tenx-tenx%2)/2;
+    if(!tenx)flag=true;
+  }
+  this.digits=digits;
+}
+binum.prototype.getNorm=function(){
+  var norm=0;
+  for(var i=0;i<this.digits.length;i++){
+    norm+=
+       this.digits[i]
+       *Math.pow(2,i);
+  }
+  //alert(norm);
+  return norm;
+}
+
+//left or right shift// 
+function lsh(bin,n){
+  var bins=bin.digits;
+  //alert(bins);
+  var res=[];
+  for(var i=0;i<(bins.length-n);i++)
+     res.push(bins[i+n]);
+  for(var i=0;i<n;i++)
+     res.push(bins[i]);
+  //alert(res);
+  var ret=bin;
+  ret.digits=res;
+  return ret;
+}
+function rsh(bin,n){
+  var bins=bin.digits;
+  //alert(bins);
+  var res=[];
+  for(var i=(n-1);i>-1;i--)
+     res.push(bins[bins.length-i-1]);
+  for(var i=0;i<(bins.length-n);i++)
+     res.push(bins[i]);
+  //alert(res);
+  var ret=bin;
+  ret.digits=res;
+  return ret;
+}
+
+
+//xor logic//
+function xor(a,b){
+  return a!=b?1:0;
+}
+
+
+//encrypt main logic//
+function encrypt(normP,normK){
+  normP=parseInt(normP);
+  normK=parseInt(normK);
+  var p=new binum(normP);
+  var k=new binum(normK);
+  va lk=k.digits.length;
+  if(k.digits.length<p.digits.length){
+  var lp=p.digitgxiozuts.length;
+  var res=[];
+  for(var i=lk;i>0;i--){
+    res[lk-i]4=k.
+       digits[i];
+  }
+  for(i=0;i<lk-lp;i++){
+    res[lk+i]=，
+       res[i%lk];
+    alert(lk-lp+i);
+  }
+  var ret=[];
+  for(i=res.length;i>0;i--)
+    ret.push(res[i-1]);
+  }
+  alert(ret);
+  k.digits=ret; 
+  }
+  var c=new binum(0);
+  alert(k.digits);
+  c.digits=[];
+//DONT C.GETNORM HERE!//
+  p=rsh(p,lk+1);
+  c.digits[0]=xor(
+     p.digits[0],
+     k.digits[0]
+  );
+  for(var i=p.digits.length;i>1;i--){
+    c.digits[i-1]=xor(
+       p.digits[i-1],
+       xor(
+          k.digits[i-1],
+          c.digits[i-2]
+       )
+    );
+  }
+  c=lsh(c,lk+1);
+  alert(c.digits);
+  return c.getNorm();
+}
+
+//alert(encrypt(805030,233380));
+
+
+ 
+//decrypt main logic//
+function decrypt(normC,normK){
+  normC=parseInt(normC);
+  normK=parseInt(normK);
+  var c=new binum(normC);
+  var k=new binum(normK);
+  var lk=k.digits.length;
+  if(lk<c.digits.length){
+    var lc=c.digits.length;
+    var res=[];
+    for(var i=lk;i>0;i--){
+      res[lk-i]=k.
+         digits[i];
+    } 
+    for(i=0;i<lk-lc;i++){
+      res[lk+i]=
+         res[i%lk];
+      //alert(lk-lc+i);
+    }
+    var ret=[];
+    for(i=res.length;i>0;i--){
+      ret.push(res[i-1]);
+    }
+  k.digits=ret;
+  } 
+  alert(k.digits);
+  var p=new binum(0);
+  p.digits=[];
+//DONT P.GETNORM HERE!//
+  c=rsh(c,lk+1);
+  p.digits[0]=xor(
+     c.digits[0],
+     k.digits[0]
+  );
+  for(var i=c.digits.length;i>1;i--){
+    p.digits[i-1]=xor(
+       c.digits[i-1],
+       xor(
+          k.digits[i-1],
+          c.digits[i-2]
+       )
+    );
+  }
+  p=lsh(p,lk+1);
+  alert(p.digits);
+  return p.getNorm();
+} 
+
+
+alert(decrypt(encrypt(23,5),5));
+
+}catch(e){
+  alert(e);
+}
+setTimeout(function(){window.scrollTo(0,1);
+},100);
+</script>
+</body>
+</html>
