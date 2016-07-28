@@ -37,9 +37,6 @@ width:15%;
 }
 
 </style>
-<script language="fk">
-alert(parseInt('12.78'));
-</script>
 </head>
 <body>
 <input id="a">
@@ -51,7 +48,8 @@ alert(parseInt('12.78'));
 
 
 <script>
-try{
+ alert(010010101010100101010);
+//try{
 //binum Class define//
 function binum(num){
   var tenx=parseInt(num);
@@ -64,6 +62,7 @@ function binum(num){
   }
   this.digits=digits;
 }
+
 binum.prototype.getNorm=function(){
   var norm=0;
   for(var i=0;i<this.digits.length;i++){
@@ -74,6 +73,7 @@ binum.prototype.getNorm=function(){
   //alert(norm);
   return norm;
 }
+
 
 //left or right shift// 
 function lsh(bin,n){
@@ -112,23 +112,24 @@ function xor(a,b){
 
 //encrypt main logic//
 function encrypt(normP,normK){
+  alert(4);
   normP=parseInt(normP);
   normK=parseInt(normK);
   var p=new binum(normP);
   var k=new binum(normK);
-  va lk=k.digits.length;
+  var lk=k.digits.length;
   if(k.digits.length<p.digits.length){
-  var lp=p.digitgxiozuts.length;
+  var lp=p.digits.length;
   var res=[];
   for(var i=lk;i>0;i--){
-    res[lk-i]4=k.
+    res[lk-i]=k.
        digits[i];
   }
   for(i=0;i<lk-lp;i++){
-    res[lk+i]=，
-       res[i%lk];
+    res[lk+i]=res[i%lk];
     alert(lk-lp+i);
   }
+  alert(5);
   var ret=[];
   for(i=res.length;i>0;i--)
     ret.push(res[i-1]);
@@ -145,6 +146,7 @@ function encrypt(normP,normK){
      p.digits[0],
      k.digits[0]
   );
+  alert(6);
   for(var i=p.digits.length;i>1;i--){
     c.digits[i-1]=xor(
        p.digits[i-1],
@@ -165,6 +167,7 @@ function encrypt(normP,normK){
  
 //decrypt main logic//
 function decrypt(normC,normK){
+  //alert(7);
   normC=parseInt(normC);
   normK=parseInt(normK);
   var c=new binum(normC);
@@ -214,11 +217,11 @@ function decrypt(normC,normK){
 
 alert(decrypt(encrypt(23,5),5));
 
-}catch(e){
+/*}catch(e){
   alert(e);
-}
+}*/
 setTimeout(function(){window.scrollTo(0,1);
-},100);
+},100); 
 </script>
 </body>
 </html>
