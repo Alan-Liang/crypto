@@ -1,10 +1,11 @@
 function lsh(binArray,n){
 	var binRet=[];
 	var foo=n%binArray.length;
-	for (var i = foo-1; i < binArray.length; ++i) {
+	for (var i = foo; i < binArray.length; ++i) {
 		binRet.push(binArray[i]);
 	}
-	for (var i = 0; i < foo-1; ++i) {
+	alert( "binRet "+binRet );
+	for (var i = 0; i < foo; ++i) {
 		binRet.push(binArray[i]);
 	}
 	return binRet;
@@ -12,10 +13,11 @@ function lsh(binArray,n){
 function rsh(binArray,n){
 	var binRet = [];
 	var foo = n%binArray.length;
-	for (var i = 1; i < foo; ++i) {
+	for (var i = 0; i < foo; ++i) {
 		binRet.push(binArray[binArray.length - foo + i]);
 	}
-	for (var i = 0; i < ( binArray.length - foo + 1); ++i) {
+	alert( "binRet "+binRet );
+	for (var i = 0; i < ( binArray.length - foo); ++i) {
 		binRet.push( binArray[i] );
 	}
 	return binRet;
@@ -25,7 +27,9 @@ function xor(a,b) {
 }
  
 function enc(p,k){
+	alert( "p "+p );
 	var shp=rsh(p,k.length+1);
+	alert("shp "+shp);
 	var nk;
 	if(k.length < p.length){
 		nk=[];
@@ -35,12 +39,15 @@ function enc(p,k){
 	}else{
 		nk=k;
 	}
+	alert( "nk "+nk );
 	var c=[];
 	c.push( xor(shp[0],nk[0] ));
 	for (var i = 1; i < shp.length; ++i) {
 		c.push(xor( shp[i] , xor( nk[i] , c[i-1])));
 	}
+	alert( "c "+c );
 	var shc = lsh(c,k.length+1);
+	alert( "shc "+shc );
 	return shc;
 }
  
@@ -119,7 +126,7 @@ function toMsg(bin) {
 	for (var i = 0; i < ( bin.length /5 ); ++i) {
 		binGr.push(revl[[bin[5*i],bin[5*i+1],bin[5*i+2],bin[5*i+3],bin[5*i+4]].join('|')]);
 	}
-	return binGr.join('');
+	return binGr.join( '' );
 }
 
 
@@ -134,10 +141,10 @@ function toMsg(bin) {
 function $(a){return document.querySelector(a);}
 
 var lis1=function() {
-	$('#answ').innerHTML = toMsg( enc( toBin($( '#ipta' ).value.toLowerCase()),toBin( $( '#iptb' ).value ) ) );
+	$('#answ').innerHTML = toMsg( enc( toBin($( '#ipta' ).value.toLowerCase()),toBin( $( '#iptb' ).value.toLowerCase() ) ) ).toUpperCase(  );
 }
 var lis2=function() {
-	$('#answ').innerHTML = toMsg( dec( toBin($( '#ipta' ).value.toLowerCase()),toBin( $( '#iptb' ).value ) ) );
+	$('#answ').innerHTML = toMsg( dec( toBin($( '#ipta' ).value.toLowerCase()),toBin( $( '#iptb' ).value.toLowerCase(  ) ) ) );
 }
 
 
