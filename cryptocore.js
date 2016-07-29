@@ -119,7 +119,7 @@ function toMsg(bin) {
 	for (var i = 0; i < ( bin.length /5 ); ++i) {
 		binGr.push(revl[[bin[5*i],bin[5*i+1],bin[5*i+2],bin[5*i+3],bin[5*i+4]].join('|')]);
 	}
-	return binGr;
+	return binGr.join('');
 }
 
 
