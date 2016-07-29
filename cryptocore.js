@@ -4,7 +4,7 @@ function lsh(binArray,n){
 	for (var i = foo; i < binArray.length; ++i) {
 		binRet.push(binArray[i]);
 	}
-	alert( "binRet "+binRet );
+	
 	for (var i = 0; i < foo; ++i) {
 		binRet.push(binArray[i]);
 	}
@@ -16,7 +16,7 @@ function rsh(binArray,n){
 	for (var i = 0; i < foo; ++i) {
 		binRet.push(binArray[binArray.length - foo + i]);
 	}
-	alert( "binRet "+binRet );
+	
 	for (var i = 0; i < ( binArray.length - foo); ++i) {
 		binRet.push( binArray[i] );
 	}
@@ -27,9 +27,8 @@ function xor(a,b) {
 }
  
 function enc(p,k){
-	alert( "p "+p );
+	
 	var shp=rsh(p,k.length+1);
-	alert("shp "+shp);
 	var nk;
 	if(k.length < p.length){
 		nk=[];
@@ -39,15 +38,15 @@ function enc(p,k){
 	}else{
 		nk=k;
 	}
-	alert( "nk "+nk );
+	
 	var c=[];
 	c.push( xor(shp[0],nk[0] ));
 	for (var i = 1; i < shp.length; ++i) {
 		c.push(xor( shp[i] , xor( nk[i] , c[i-1])));
 	}
-	alert( "c "+c );
+	
 	var shc = lsh(c,k.length+1);
-	alert( "shc "+shc );
+	//alert( "shc "+shc );
 	return shc;
 }
  
