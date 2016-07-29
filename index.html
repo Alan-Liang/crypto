@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>The X-Shift Cipher by Alan-Liang</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">The X-Shift Cipher</h1>
+      <h2 class="project-tagline"></h2>
+      <a href="https://github.com/Alan-Liang/crypto" class="btn">View on GitHub</a>
+      <a href="https://github.com/Alan-Liang/crypto/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/Alan-Liang/crypto/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h2>
+<a id="define" class="anchor" href="#define" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Define:</h2>
+
+<p>c=a⊕b:</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">a</th>
+<th align="center">b</th>
+<th align="center">c</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">0</td>
+</tr>
+</tbody>
+</table>
+
+<p>right/ left shift sth by n digits: Move the last/ first n digit to the front/ end.</p>
+
+<p>P[i]:The i th digit of P.</p>
+
+<p>C[i]:The i th digit of C.</p>
+
+<p>K[i]:The i th digit of K.</p>
+
+<p>K:The key binary number.</p>
+
+<h2>
+<a id="encrypt" class="anchor" href="#encrypt" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Encrypt:</h2>
+
+<ol>
+<li>Turn the plaintext into a binary number P;</li>
+<li>If the key has n digits, right shift P by (n+1) digits.</li>
+<li>Repeat the key to every digit.</li>
+<li><code>C[1]=P[1]⊕K[1].</code></li>
+<li>
+<p>for i in P,and i&gt;1:</p>
+
+<p><code>C[i]=P[i]⊕K[i]⊕C[i-1]</code></p>
+</li>
+<li><p>If the key has n digits, left shift C by (n+1) digits.</p></li>
+<li>Turn the binary number C into ciphertext.email: </li>
+</ol>
+
+<h2>
+<a id="decrypt" class="anchor" href="#decrypt" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Decrypt:</h2>
+
+<ol>
+<li>Turn the ciphertext into a binary number C;</li>
+<li>If the key has n digits, right shift C by (n+1) digits.</li>
+<li>Repeat the key to every digit.</li>
+<li><code>P[1]=C[1]⊕K[1].</code></li>
+<li>
+<p>for i in C,and i&gt;1:</p>
+
+<p><code>P[i]=C[i]⊕K[i]⊕C[i-1]</code></p>
+</li>
+<li><p>If the key has n digits, left shift P by (n+1) digits.</p></li>
+<li>Turn the binary number P into plaintext.</li>
+</ol>
+
+<h2>
+<a id="how-to-turn-text-into-binary" class="anchor" href="#how-to-turn-text-into-binary" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to turn text into binary:</h2>
+
+<table>
+<thead>
+<tr>
+<th align="center">a</th>
+<th align="center">b</th>
+<th align="center">c</th>
+<th align="center">d</th>
+<th align="center">e</th>
+<th align="center">f</th>
+<th align="center">g</th>
+<th align="center">h</th>
+<th align="center">i</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">00001</td>
+<td align="center">00010</td>
+<td align="center">00011</td>
+<td align="center">00100</td>
+<td align="center">00101</td>
+<td align="center">00110</td>
+<td align="center">00111</td>
+<td align="center">01000</td>
+<td align="center">01001</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+<th align="center">j</th>
+<th align="center">k</th>
+<th align="center">l</th>
+<th align="center">m</th>
+<th align="center">n</th>
+<th align="center">o</th>
+<th align="center">p</th>
+<th align="center">q</th>
+<th align="center">r</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">01010</td>
+<td align="center">01011</td>
+<td align="center">01100</td>
+<td align="center">01101</td>
+<td align="center">01110</td>
+<td align="center">01111</td>
+<td align="center">10000</td>
+<td align="center">10001</td>
+<td align="center">10010</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+<th align="center">s</th>
+<th align="center">t</th>
+<th align="center">u</th>
+<th align="center">v</th>
+<th align="center">w</th>
+<th align="center">x</th>
+<th align="center">y</th>
+<th align="center">z</th>
+<th align="center">-</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">10011</td>
+<td align="center">10100</td>
+<td align="center">10101</td>
+<td align="center">10110</td>
+<td align="center">10111</td>
+<td align="center">11000</td>
+<td align="center">11001</td>
+<td align="center">11010</td>
+<td align="center">11011</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+<th align="center">_</th>
+<th align="center">.</th>
+<th align="center">,</th>
+<th align="center">?</th>
+<th align="center">!</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">00000</td>
+<td align="center">11100</td>
+<td align="center">11101</td>
+<td align="center">11110</td>
+<td align="center">11111</td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<a id="the-online-calculator" class="anchor" href="#the-online-calculator" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>The online calculator</h2>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/Alan-Liang/crypto">The X-Shift Cipher</a> is maintained by <a href="https://github.com/Alan-Liang">Alan-Liang</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
